@@ -10,7 +10,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import type { IBook } from "@/types";
-import { Book, Delete, DeleteIcon, Edit } from "lucide-react";
+import {
+  Book,
+  BookIcon,
+  Delete,
+  DeleteIcon,
+  Edit,
+  EditIcon,
+} from "lucide-react";
+import EditBookModal from "./EditBookModel";
+import { DeleteBookModal } from "./DeleteBookModal";
+import BorrowBookModal from "./BorrowBookModal";
 
 interface IProps {
   data: IBook[];
@@ -43,15 +53,9 @@ export function BooksTable({ data }: IProps) {
               <TableCell className="text-right">
                 <div className="flex gap-2">
                   {" "}
-                  <Button>
-                    <Book />
-                  </Button>
-                  <Button variant={"outline"}>
-                    <Edit />
-                  </Button>
-                  <Button variant={"destructive"}>
-                    <Delete />
-                  </Button>
+                  <BorrowBookModal book={book} />
+                  <EditBookModal book={book} />
+                  <DeleteBookModal book={book} />
                 </div>
               </TableCell>
             </TableRow>

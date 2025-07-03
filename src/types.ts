@@ -4,6 +4,15 @@ export interface IBook {
   genre: string;
   author: string;
   isbn: string;
+  description: string;
   copies: number;
   available: boolean;
+}
+
+export interface IBorrowSummary {
+  totalQuantity: number;
+  book: {
+    title: string;
+    isbn: string;
+  };
 }

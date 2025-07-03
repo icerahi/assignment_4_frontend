@@ -31,9 +31,11 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { Link } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { useAddBookMutation } from "@/redux/api/baseApi";
+import { useAddBookMutation, useUpdateBookMutation } from "@/redux/api/baseApi";
+import { EditIcon } from "lucide-react";
+import type { IBook } from "@/types";
 
 const addBookSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -55,49 +57,53 @@ const genres = [
   "FANTASY",
 ];
 
-export default function AddBookModal() {
+interface IProps {
+  book: IBook;
+}
+export default function EditBookModal({ book }: IProps) {
   const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(addBookSchema),
     defaultValues: {
-      title: "",
-      author: "",
-      genre: "",
-      isbn: "",
-      description: "",
-      copies: "",
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      isbn: book.isbn,
+      description: book.description,
+      copies: book.copies,
     },
   });
 
-  const [addBook, result] = useAddBookMutation();
+  const [updateBook, result] = useUpdateBookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
+    const updatedData = { ...book, ...values };
+    if (updatedData.copies === 0) {
+      updatedData.available = false;
+    }
+
     try {
-      if (values.copies > 0) {
-        values.available = true;
-      } else {
-        values.available = false;
-      }
-      console.log(values);
-      const res = await addBook(values).unwrap();
+      const res = await updateBook(updatedData).unwrap();
 
       toast.success(res.message);
-      console.log(res);
+
       setOpen(false);
-      form.reset();
     } catch (error: any) {
       toast.error(error?.data?.message);
     }
   };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <p className="cursor-pointer">Add Book</p>
+          <Button variant={"outline"}>
+            <EditIcon />
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Add a new book</DialogTitle>
+            <DialogTitle>Edit a book</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form
@@ -197,9 +203,7 @@ export default function AddBookModal() {
                       <Input
                         type="number"
                         {...field}
-                        value={
-                          typeof field.value === "string" ? field.value : ""
-                        }
+                        value={Number(field.value)}
                       />
                     </FormControl>
                     <FormMessage />

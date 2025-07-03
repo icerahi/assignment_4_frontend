@@ -7,8 +7,9 @@ const Navbar = () => {
     <nav className="flex justify-between items-center px-5 h-16">
       <div>
         <Link to="/">
-          {" "}
-          <span className="font-bold ml-2">Libary</span> Management
+          <h1 className="text-2xl">
+            <span className="bg-red-600 py-1 px-2">Libary</span> Management
+          </h1>
         </Link>
       </div>
 

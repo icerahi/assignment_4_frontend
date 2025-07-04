@@ -1,26 +1,13 @@
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
   TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { IBook, IBorrowSummary } from "@/types";
-import {
-  Book,
-  BookIcon,
-  Delete,
-  DeleteIcon,
-  Edit,
-  EditIcon,
-} from "lucide-react";
-import EditBookModal from "./EditBookModel";
-import { DeleteBookModal } from "./DeleteBookModal";
-import BorrowBookModal from "./BorrowBookModal";
+import type { IBorrowSummary } from "@/types";
 
 interface IProps {
   data: IBorrowSummary[];
@@ -31,7 +18,7 @@ export function BorrowSummaryTable({ data }: IProps) {
       <TableCaption>A list of Books Borrow Summary</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead>Title</TableHead>
+          <TableHead>Book Title</TableHead>
 
           <TableHead>ISBN</TableHead>
           <TableHead>Total Quantity</TableHead>

@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -18,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import {
   Select,
   SelectContent,
@@ -28,12 +27,12 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { Link } from "react-router";
+
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
-import { useAddBookMutation, useUpdateBookMutation } from "@/redux/api/baseApi";
+import { useUpdateBookMutation } from "@/redux/api/baseApi";
 import { EditIcon } from "lucide-react";
 import type { IBook } from "@/types";
 
@@ -74,7 +73,7 @@ export default function EditBookModal({ book }: IProps) {
     },
   });
 
-  const [updateBook, result] = useUpdateBookMutation();
+  const [updateBook] = useUpdateBookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     const updatedData = { ...book, ...values };
@@ -97,7 +96,7 @@ export default function EditBookModal({ book }: IProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button variant={"outline"}>
+          <Button className="ignore-row-click " variant={"outline"}>
             <EditIcon />
           </Button>
         </DialogTrigger>

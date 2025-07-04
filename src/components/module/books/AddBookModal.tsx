@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -18,7 +17,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -28,12 +26,12 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { Link } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useAddBookMutation } from "@/redux/api/baseApi";
+import { useNavigate } from "react-router";
 
 const addBookSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -56,6 +54,7 @@ const genres = [
 ];
 
 export default function AddBookModal() {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(addBookSchema),
@@ -69,7 +68,7 @@ export default function AddBookModal() {
     },
   });
 
-  const [addBook, result] = useAddBookMutation();
+  const [addBook] = useAddBookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
@@ -80,7 +79,7 @@ export default function AddBookModal() {
       }
       console.log(values);
       const res = await addBook(values).unwrap();
-
+      navigate("/books");
       toast.success(res.message);
       console.log(res);
       setOpen(false);
@@ -93,11 +92,11 @@ export default function AddBookModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <p className="cursor-pointer">Add Book</p>
+          <p className="ignore-row-click cursor-pointer">Add Book</p>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Add a new book</DialogTitle>
+            <DialogTitle className="text-center">Add a new book</DialogTitle>
           </DialogHeader>
           <Form {...form}>
             <form

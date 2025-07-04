@@ -1,4 +1,3 @@
-import BooksTable from "@/components/module/books/BooksTable";
 import BorrowSummaryTable from "@/components/module/books/BorrowSummaryTable";
 import { useGetBorrowSummaryQuery } from "@/redux/api/baseApi";
 

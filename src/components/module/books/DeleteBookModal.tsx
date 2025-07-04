@@ -21,7 +21,7 @@ interface IProps {
 }
 export function DeleteBookModal({ book }: IProps) {
   const [open, setOpen] = useState(false);
-  const [deleteBook, result] = useDeleteBookMutation();
+  const [deleteBook] = useDeleteBookMutation();
 
   const deleteHandler = async () => {
     try {
@@ -38,7 +38,7 @@ export function DeleteBookModal({ book }: IProps) {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button variant={"destructive"}>
+        <Button className="ignore-row-click " variant={"destructive"}>
           <DeleteIcon />
         </Button>
       </AlertDialogTrigger>

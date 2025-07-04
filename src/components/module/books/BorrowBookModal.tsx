@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -18,22 +17,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useAddBookMutation, useBorrowBookMutation } from "@/redux/api/baseApi";
+import { useBorrowBookMutation } from "@/redux/api/baseApi";
 import type { IBook } from "@/types";
 import { BookIcon, CalendarIcon } from "lucide-react";
 import {
@@ -49,7 +40,7 @@ const borrowBookSchema = z.object({
   quantity: z.preprocess((value) => {
     return Number(value);
   }, z.number().min(1, "Quantity should be a positive number")),
-  dueDate: z.date(),
+  dueDate: z.date().min(new Date(), "Due Date must be a future date"),
 });
 
 interface IProps {
@@ -63,11 +54,11 @@ export default function BorrowBookModal({ book }: IProps) {
     resolver: zodResolver(borrowBookSchema),
     defaultValues: {
       quantity: "",
-      dueDate: new Date(),
+      dueDate: undefined,
     },
   });
 
-  const [borrowBook, result] = useBorrowBookMutation();
+  const [borrowBook] = useBorrowBookMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     console.log(values);
@@ -82,7 +73,9 @@ export default function BorrowBookModal({ book }: IProps) {
         form.reset();
         navigate("/borrow-summary");
       } else {
-        toast.error("Quantity cannot exceed available copies!");
+        form.setError("quantity", {
+          message: "Quantity cannot exceed available copies!",
+        });
       }
     } catch (error: any) {
       toast.error(error?.data?.message);
@@ -92,16 +85,17 @@ export default function BorrowBookModal({ book }: IProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button>
+          <Button className="ignore-row-click ">
             <BookIcon />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle className="text-center"> Borrow a Book</DialogTitle>
-            <h1 className="mt-2">
-              Book Title: <span className="italic">{book.title}</span>
-            </h1>
+            <p className="mt-2">
+              <span className="font-bold"> Book Title:</span>{" "}
+              <span className="italic">{book.title}</span>
+            </p>
           </DialogHeader>
           <Form {...form}>
             <form
@@ -123,7 +117,9 @@ export default function BorrowBookModal({ book }: IProps) {
                         }
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage>
+                      {form.formState.errors.quantity?.message}
+                    </FormMessage>
                   </FormItem>
                 )}
               />

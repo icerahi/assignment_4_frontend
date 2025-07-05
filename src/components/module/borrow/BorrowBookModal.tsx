@@ -88,7 +88,7 @@ export default function BorrowBookModal({ book }: IProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button className="ignore-row-click bg-indigo-500">
+          <Button className="ignore-row-click bg-indigo-500 text-sm">
             {location.pathname === "/books" ? <BookIcon /> : "Borrow"}
           </Button>
         </DialogTrigger>

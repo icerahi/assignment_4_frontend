@@ -52,6 +52,7 @@ const BookCard = ({ book }: IProps) => {
           <BorrowBookModal book={book} />
 
           <Button
+            className="text-sm"
             onClick={() => dispatch(showBookDetails(book))}
             variant={"outline"}
           >

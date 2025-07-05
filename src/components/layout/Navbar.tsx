@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const Navbar = () => {
   const location = useLocation();
   return (
-    <nav className="flex justify-around items-center  border-b p-3">
+    <nav className="flex justify-around items-center gap-2  border-b p-3">
       <div>
         <Link to="/">
           <img

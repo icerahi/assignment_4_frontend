@@ -18,6 +18,8 @@ const Home = () => {
     return <p>Something went wrong! </p>;
   }
 
+  const genreList = ["All", ...genres];
+
   return (
     <div className="">
       <div className="flex flex-col justify-center font-sans items-center h-[200px] ">
@@ -25,15 +27,15 @@ const Home = () => {
           Explore our collection
         </h1>
         <p className="font-extralight p-2 text-blue-900 tracking-wide font-sans text-md dark:text-white">
-          There's someting for everybody
+          There's something for everybody
         </p>
       </div>
       <Tabs defaultValue="all" className="">
         <TabsList className="bg-transparent flex flex-wrap justify-center items-center mx-auto">
-          {genres.map((genre) => (
+          {genreList.map((genre) => (
             <TabsTrigger
               key={genre}
-              className="border-blue-950 font-light text-md rounded-4xl px-4 uppercase text-blue-950 m-1"
+              className="border-blue-950 hover:bg-blue-950 cursor-pointer hover:text-gray-300 font-light text-md rounded-4xl px-4 uppercase text-blue-950 m-1"
               value={genre}
             >
               {genre}

@@ -23,7 +23,10 @@ const Books = () => {
         </h2>
         <p className="text-sm text-gray-600 mb-4 mx-2 dark:text-white">
           Below is a list of all the books currently in the system. You can
-          view, edit, or remove entries as needed.
+          view, borrow, edit, or remove books as needed.
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Tip: Click on a row to view more details about a book.
         </p>
       </div>
 

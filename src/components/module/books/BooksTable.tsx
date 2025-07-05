@@ -1,7 +1,7 @@
 import {
   Table,
   TableBody,
-  TableCaption,
+ 
   TableCell,
   TableHead,
   TableHeader,
@@ -11,10 +11,15 @@ import type { IBook } from "@/types";
 
 import EditBookModal from "./EditBookModel";
 import { DeleteBookModal } from "./DeleteBookModal";
-import BorrowBookModal from "./BorrowBookModal";
-import BookDetailsModal from "./BookDetailsModal";
+import BorrowBookModal from "../borrow/BorrowBookModal";
+ 
 import { useAppDispatch } from "@/redux/hooks";
 import { showBookDetails } from "@/redux/features/book/BookSlice";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface IProps {
   data: IBook[];
@@ -22,12 +27,10 @@ interface IProps {
 export function BooksTable({ data }: IProps) {
   const dispatch = useAppDispatch();
   return (
-    <Table>
-      <TableCaption>A list of Books</TableCaption>
-      <BookDetailsModal />
+    <Table className="">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Title</TableHead>
+          <TableHead>Title</TableHead>
           <TableHead>Author</TableHead>
           <TableHead>Genre</TableHead>
           <TableHead>ISBN</TableHead>
@@ -61,11 +64,32 @@ export function BooksTable({ data }: IProps) {
                 onClick={(e) => e.stopPropagation()}
                 className="text-right"
               >
-                <div className="flex gap-2">
+                <div className="flex gap-1 ">
                   {" "}
-                  <BorrowBookModal book={book} />
-                  <EditBookModal book={book} />
-                  <DeleteBookModal book={book} />
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <BorrowBookModal book={book} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Borrow Book</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <EditBookModal book={book} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Edit Book</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <DeleteBookModal book={book} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Delete Book</p>
+                    </TooltipContent>
+                  </Tooltip>
                 </div>
               </TableCell>
             </TableRow>

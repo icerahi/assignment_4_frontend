@@ -1,25 +1,13 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 text-center text-sm p-4 border-t">
-      <p>© 2025 Library Management System. All rights reserved.</p>
-      <p>Created using Shadcn UI and React with TypeScript + Vite.</p>
+    <footer className="bg-gray-800 text-white py-6 mt-10 relative bottom-0 left-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p className="text-sm">© 2025 Open Library. All rights reserved.</p>
+        <p className="text-xs mt-1 text-gray-400">
+          Developed with ❤️ by Imran Hasan
+        </p>
+      </div>
     </footer>
-    // <footer className="flex items-center flex-wrap justify-around border-t-1 p-5">
-    //   <div>
-    //     <p>1418 River Drive, Suite 35 Cottonhall, CA 9622 United States</p>
-    //   </div>
-    //   <div>
-    //     <p>
-    //       +1 530 347 4607 <br />
-    //       printpress@example.net
-    //     </p>
-    //   </div>
-    //   <div>
-    //     <h1 className="text-4xl">
-    //       <span className="bg-red-600">Libary</span> Management
-    //     </h1>
-    //   </div>
-    // </footer>
   );
 };
 export default Footer;

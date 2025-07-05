@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader";
 import BooksTable from "@/components/module/books/BooksTable";
 import { useGetBooksQuery } from "@/redux/api/baseApi";
 
@@ -8,7 +9,7 @@ const Books = () => {
   });
 
   if (isLoading) {
-    return <p>Loading....</p>;
+    return <Loader />;
   }
   if (error) {
     return <p>Something went wrong! </p>;
@@ -16,8 +17,15 @@ const Books = () => {
 
   return (
     <div>
-      <p>Books</p>
-      <div className="m-7">
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">All Books</h2>
+        <p className="text-sm text-gray-600 mb-4">
+          Below is a list of all the books currently in the system. You can
+          view, edit, or remove entries as needed.
+        </p>
+      </div>
+
+      <div className="w-4/5 mx-auto">
         <BooksTable data={data.data} />
       </div>
     </div>

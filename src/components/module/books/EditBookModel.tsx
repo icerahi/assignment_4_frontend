@@ -96,7 +96,7 @@ export default function EditBookModal({ book }: IProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button className="ignore-row-click " variant={"outline"}>
+          <Button className="ignore-row-click ">
             <EditIcon />
           </Button>
         </DialogTrigger>

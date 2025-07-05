@@ -1,27 +1,28 @@
 import { Link } from "react-router";
 import { ModeToggle } from "../mode-toggle";
 import AddBookModal from "../module/books/AddBookModal";
-
+import logo from "../../assets/logo.svg";
 const Navbar = () => {
   return (
-    <nav className="flex justify-between items-center px-5 h-16">
+    <nav className="flex justify-around items-center  border-b p-3">
       <div>
         <Link to="/">
-          <h1 className="text-2xl">
-            <span className="bg-red-600 py-1 px-2">Libary</span> Management
-          </h1>
+           
+          <img src={logo} alt="" className="w-44 h-auto" />
         </Link>
       </div>
-
-      <div className="flex justify-around gap-3">
-        <Link to="/books">All Books</Link>
-        <AddBookModal />
-        <Link to="/borrow-summary">Borrow Summary</Link>
-      </div>
-
-      <div>
-        <ModeToggle />
-      </div>
+      <ul className="flex gap-5">
+        <li className="flex font-light text-gray-500">
+          <AddBookModal />
+        </li>
+        <li className="font-light text-gray-500">
+          <Link to="/books">All Books</Link>
+        </li>
+        <li className="font-light text-gray-500">
+          <Link to="/borrow-summary">Borrow Summary</Link>
+        </li>
+      </ul>
+      <ModeToggle />
     </nav>
   );
 };

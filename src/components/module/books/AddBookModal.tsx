@@ -32,6 +32,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { useAddBookMutation } from "@/redux/api/baseApi";
 import { useNavigate } from "react-router";
+ 
 
 const addBookSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -39,12 +40,15 @@ const addBookSchema = z.object({
   genre: z.string().min(1, "Genre is required"),
   isbn: z.string().min(1, "ISBN is required"),
   description: z.string(),
-  copies: z.preprocess((value) => {
-    return Number(value);
-  }, z.number().min(0, "Copies should be a positive number")),
+  copies: z.preprocess(
+    (value) => (value === "" ? undefined : Number(value)),
+    z
+      .number({ required_error: "Copies is required" })
+      .min(0, "Copies should be a positive number")
+  ),
 });
 
-const genres = [
+export const genres = [
   "FICTION",
   "NON_FICTION",
   "SCIENCE",
@@ -64,7 +68,7 @@ export default function AddBookModal() {
       genre: "",
       isbn: "",
       description: "",
-      copies: "",
+      copies: 0,
     },
   });
 
@@ -92,7 +96,12 @@ export default function AddBookModal() {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <p className="ignore-row-click cursor-pointer">Add Book</p>
+          <p className="ignore-row-click cursor-pointer flex">
+            {/* <sup>
+              <Plus />{" "}
+            </sup> */}
+            Add Book
+          </p>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -154,6 +163,7 @@ export default function AddBookModal() {
                         </SelectContent>
                       </Select>
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -197,7 +207,7 @@ export default function AddBookModal() {
                         type="number"
                         {...field}
                         value={
-                          typeof field.value === "string" ? field.value : ""
+                          typeof field.value === "string" ? field.value : 0
                         }
                       />
                     </FormControl>

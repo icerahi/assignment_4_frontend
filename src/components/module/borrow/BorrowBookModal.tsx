@@ -19,7 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -40,7 +40,9 @@ const borrowBookSchema = z.object({
   quantity: z.preprocess((value) => {
     return Number(value);
   }, z.number().min(1, "Quantity should be a positive number")),
-  dueDate: z.date().min(new Date(), "Due Date must be a future date"),
+  dueDate: z
+    .date({ required_error: "Due Date is required" })
+    .min(new Date(), "Due Date must be a future date"),
 });
 
 interface IProps {
@@ -48,7 +50,8 @@ interface IProps {
 }
 export default function BorrowBookModal({ book }: IProps) {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  console.log(location.pathname);
   const [open, setOpen] = useState(false);
   const form = useForm({
     resolver: zodResolver(borrowBookSchema),
@@ -85,8 +88,8 @@ export default function BorrowBookModal({ book }: IProps) {
     <Dialog open={open} onOpenChange={setOpen}>
       <form>
         <DialogTrigger asChild>
-          <Button className="ignore-row-click ">
-            <BookIcon />
+          <Button className="ignore-row-click bg-indigo-500">
+            {location.pathname === "/books" ? <BookIcon /> : "Borrow"}
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

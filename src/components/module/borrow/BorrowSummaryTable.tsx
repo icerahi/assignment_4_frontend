@@ -1,7 +1,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -15,7 +14,6 @@ interface IProps {
 export function BorrowSummaryTable({ data }: IProps) {
   return (
     <Table>
-      <TableCaption>A list of Books Borrow Summary</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Book Title</TableHead>

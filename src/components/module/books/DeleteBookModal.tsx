@@ -12,8 +12,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { useDeleteBookMutation } from "@/redux/api/baseApi";
 import type { IBook } from "@/types";
-import { DeleteIcon } from "lucide-react";
+import { DeleteIcon, TrashIcon } from "lucide-react";
 import { useState } from "react";
+import { useLocation } from "react-router";
 import { toast } from "sonner";
 
 interface IProps {
@@ -22,6 +23,8 @@ interface IProps {
 export function DeleteBookModal({ book }: IProps) {
   const [open, setOpen] = useState(false);
   const [deleteBook] = useDeleteBookMutation();
+
+  const location = useLocation();
 
   const deleteHandler = async () => {
     try {
@@ -39,7 +42,7 @@ export function DeleteBookModal({ book }: IProps) {
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
         <Button className="ignore-row-click " variant={"destructive"}>
-          <DeleteIcon />
+          {location.pathname === "/books" ? <DeleteIcon /> : <TrashIcon />}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

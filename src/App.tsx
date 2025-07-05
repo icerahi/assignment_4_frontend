@@ -3,19 +3,21 @@ import Navbar from "./components/layout/Navbar";
 
 import { Toaster } from "./components/ui/sonner";
 import Footer from "./components/layout/Footer";
+import BookDetailsModal from "./components/module/books/BookDetailsModal";
 
 function App() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
 
       <hr />
-      <div className="m-5">
+      <main className="flex-grow my-10">
         <Outlet />
-      </div>
+      </main>
       <Footer />
+      <BookDetailsModal />
       <Toaster position="top-right" />
-    </>
+    </div>
   );
 }
 

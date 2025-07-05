@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const Navbar = () => {
   const location = useLocation();
   return (
-    <nav className="flex justify-around items-center gap-2  border-b p-3">
+    <nav className="flex justify-around items-center gap-3 border-b p-3">
       <div>
         <Link to="/">
           <img
@@ -16,7 +16,7 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <ul className="flex items-center gap-2 md:gap-5">
+      <ul className="flex items-center justify-center md:gap-5 uppercase">
         <li className="flex font-light text-gray-500 text-sm hover:text-blue-900">
           <AddBookModal />
         </li>

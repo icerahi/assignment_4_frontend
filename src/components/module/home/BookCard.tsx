@@ -18,7 +18,7 @@ const BookCard = ({ book }: IProps) => {
     <div className="border-1 border-t-0 shadow-lg p-3 relative">
       <p
         className={cn(
-          "absolute px-2 rounded-lg -top-3 -right-2 text-gray-900 font-thin px-2",
+          "absolute px-2 rounded-lg -top-3 -right-2 text-gray-900 font-thin uppercase",
           {
             " bg-green-500": book.available,
             " bg-red-500": !book.available,

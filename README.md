@@ -1,32 +1,27 @@
 # Book Management System
 
-A modern and responsive web application for managing a book library. Users can browse, add, edit, and delete books, as well as manage borrowing records.
+A modern and responsive web application for managing a book library. Users can browse, add, edit, and delete books, as well as manage borrowing records. This project is built with React, Redux Toolkit, RTK Query, and TypeScript, and it interacts with a RESTful API.
 
 ## Live Demo
 
-[Link to live demo]() <!-- Add your live demo link here -->
+[https://assignment4frontend.vercel.app/]() https://assignment4frontend.vercel.app/
 
 ## Features
 
 - **Book Management:**
-  - View a list of all books with details in a table format (Title, Author, Genre, ISBN, Copies, Availability, and Actions).
-  - Add new books to the library with a dedicated form.
-  - Edit existing book information.
-  - Delete books from the library with a confirmation dialog.
+  - **View All Books:** A comprehensive table displays all books with columns for Title, Author, Genre, ISBN, Copies, and Availability.
+  - **Add New Book:** A modal form allows users to add new books with fields for Title, Author, Genre, ISBN, Description, and Copies.
+  - **Edit Book:** Edit existing book information through a modal form, with changes reflected instantly.
+  - **Delete Book:** A confirmation dialog ensures that books are not accidentally deleted.
+  - **Book Details:** Clicking on a book row in the table opens a modal with detailed information about the book.
 - **Borrowing System:**
-  - Borrow books and view a summary of borrowed items.
-  - The borrow quantity cannot exceed the available copies.
-- **Responsive Design:**
-  - A clean and user-friendly interface that works on all devices.
-- **Dark/Light Mode:**
-  - Switch between dark and light themes for comfortable viewing.
-
-## Bonus Features
-
-- **Optimistic UI Updates:** The UI updates instantly after performing actions like adding, editing, or deleting books.
-- **Toast Notifications:** Users receive toast notifications for actions like successful book creation or borrowing.
-- **Responsive Layout:** The application is fully responsive and works seamlessly on mobile, tablet, and desktop devices.
-- **Type-Safe Forms:** Forms are built with React Hook Form and Zod for type safety and validation.
+  - **Borrow Book:** A modal form allows users to borrow a book by specifying the quantity and due date.
+  - **Borrow Summary:** A dedicated page displays a summary of all borrowed books, including the book title, ISBN, and total quantity borrowed.
+- **User Experience:**
+  - **Responsive Design:** The application is fully responsive and works seamlessly on mobile, tablet, and desktop devices.
+  - **Dark/Light Mode:** A theme toggle allows users to switch between dark and light modes for comfortable viewing.
+  - **Toast Notifications:** Users receive toast notifications for actions like successful book creation, updates, deletion, and borrowing.
+  - **Type-Safe Forms:** Forms are built with React Hook Form and Zod for type safety and validation.
 
 ## Tech Stack
 

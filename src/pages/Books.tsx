@@ -18,8 +18,10 @@ const Books = () => {
   return (
     <div>
       <div className="text-center">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">All Books</h2>
-        <p className="text-sm text-gray-600 mb-4 mx-2">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2 dark:text-white">
+          All Books
+        </h2>
+        <p className="text-sm text-gray-600 mb-4 mx-2 dark:text-white">
           Below is a list of all the books currently in the system. You can
           view, edit, or remove entries as needed.
         </p>

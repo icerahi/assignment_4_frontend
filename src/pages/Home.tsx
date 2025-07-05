@@ -1,9 +1,9 @@
+import Loader from "@/components/Loader";
 import { genres } from "@/components/module/books/AddBookModal";
 import BookCard from "@/components/module/home/BookCard";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetBooksQuery } from "@/redux/api/baseApi";
 import type { IBook } from "@/types";
-import { Loader } from "lucide-react";
 
 const Home = () => {
   const { data, error, isLoading } = useGetBooksQuery(undefined, {
@@ -21,10 +21,10 @@ const Home = () => {
   return (
     <div className="">
       <div className="flex flex-col justify-center font-sans items-center h-[200px] ">
-        <h1 className="text-4xl font-extralight text-indigo-800 p-2 tracking-wider ">
+        <h1 className="text-4xl font-extralight text-indigo-800 p-2 tracking-wider dark:text-white">
           Explore our collection
         </h1>
-        <p className="font-extralight p-2 text-blue-900 tracking-wide font-sans text-md">
+        <p className="font-extralight p-2 text-blue-900 tracking-wide font-sans text-md dark:text-white">
           There's someting for everybody
         </p>
       </div>

@@ -20,10 +20,7 @@ const router = createBrowserRouter([
         path: "books",
         Component: Books,
       },
-      {
-        path: "add-book",
-        Component: AddBookModal,
-      },
+
       {
         path: "borrow-summary",
         Component: BorrowSummary,

@@ -1,10 +1,10 @@
-# Book Management System
+# Library Management System
 
-A modern and responsive web application for managing a book library. Users can browse, add, edit, and delete books, as well as manage borrowing records. This project is built with React, Redux Toolkit, RTK Query, and TypeScript, and it interacts with a RESTful API.
+A modern and responsive web application for managing a book library. Users can browse, add, edit, and delete books, as well as watch borrowing summary. This project is built with React, Redux Toolkit, RTK Query, and TypeScript, and it interacts with a RESTful API.
 
-## Live Demo
+## Live
 
-[https://assignment4frontend.vercel.app/]() https://assignment4frontend.vercel.app/
+[https://assignment4frontend.vercel.app/](https://assignment4frontend.vercel.app/)
 
 ## Features
 
@@ -28,7 +28,6 @@ A modern and responsive web application for managing a book library. Users can b
 - **Frontend:**
   - [React](https://reactjs.org/)
   - [TypeScript](https://www.typescriptlang.org/)
-  - [Vite](https://vitejs.dev/)
 - **State Management:**
   - [Redux Toolkit](https://redux-toolkit.js.org/)
   - [RTK Query](https://redux-toolkit.js.org/rtk-query/)
@@ -58,7 +57,7 @@ A modern and responsive web application for managing a book library. Users can b
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/assignment_4_frontend.git
+   git clone https://github.com/icerahi/assignment_4_frontend.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -105,6 +104,7 @@ This will create a `dist` folder with the optimized and minified files.
 └── types.ts        # TypeScript type definitions
 ```
 
-## License
+## 🧑‍💻 Author
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+**Imran Hasan**
+GitHub: [@icerahi](https://github.com/icerahi)
